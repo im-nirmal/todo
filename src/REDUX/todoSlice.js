@@ -3,26 +3,26 @@ import { createSlice } from "@reduxjs/toolkit";
 const todoSlice = createSlice({
     name:'todos',
     initialState:{
-        item:[]
+        items:[]
     },
     reducers:{
         //to save
         saveTodo : (state,action)=>{
-            state.item.push(action.payload)
+            state.items.push(action.payload)
         },
         //delete
         deleteTodo : (state,action)=>{
-            state.item = state.item.filter(ele => ele.id !== action.payload)
+            state.items = state.items.filter(todo => todo.id !== action.payload)
         },
         //empty all
         emptyTodo : (state,action) =>{
-            return state = []
+            state.items = []
         },
         //todo status
         todoStatus : (state,action)=>{
-            const ele = state.item.find(ele => ele.id === action.payload)
-            if (ele){
-                ele.complete =!ele.complete
+            const todo = state.items.find(todo => todo.id === action.payload)
+            if (todo){
+                todo.completed =!todo.completed
             }
         }
     }
